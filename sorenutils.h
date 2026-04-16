@@ -8,11 +8,48 @@
 	#include <unistd.h>
 #endif
 
+#include <time.h>
+#include <iostream>
 #include <string>
 using namespace std;
 
 #ifndef SORENUTILS_H
 	#define SORENUTILS_H
+
+
+	struct Time{
+		int hour;
+		int minute;
+		int second;
+	};
+	struct Date{
+		int day;
+		int month;
+		int year;
+	};
+	Time getTime(int bonus=0) {
+		Time t; time_t sec=time(NULL)+(bonus*3600);
+		t.hour=(sec/3600)%24;
+		t.minute=(sec-(sec/3600)*3600)/60;
+		t.second=(sec-(sec/3600)*3600-t.minute*60);
+		return t;
+	}
+	Date getDate(int bonus=0) {
+		Date d; time_t sec=time(NULL)+(bonus*3600);
+		cout<<(sec/86400)%366<<endl;
+		d.year=1970;
+		d.day=0;
+		int i=0;
+		while(d.year*86400*365+(d.day+sec/(86400*365))*86400<=sec){
+			cout<<d.year*86400*365+(d.day+sec/(86400*365))*86400<<endl;
+			if(d.year%4==0){
+				d.day--;
+			};
+			d.year++;
+		};
+		d.day+=sec/(86400*365);
+		return d;
+	}
 
 	string lower(string Str){
         	// Ciclo Lowercase
@@ -42,5 +79,28 @@ using namespace std;
 			if(cr==0){return w.ws_col;}
 			else{return w.ws_row;};
 		#endif
+	}
+
+	void order(auto vett[], int q, bool ord=true){ // 0=Decrescente 1=Crescente
+		for(int i=0; i<q-1; i++){
+			for(int j=i+1; j<q; j++){
+				// Scelta Ordine
+				if(ord){ // Ordinamento Crescente
+					// Scambio Posizione
+					if(vett[j]<vett[i]){
+						auto temp=vett[j];
+						vett[j]=vett[i];
+						vett[i]=temp;
+					};
+				}else{ // Ordinamento Decrescente
+					// Scambio Posizione
+					if(vett[j]>vett[i]){
+						auto temp=vett[j];
+						vett[j]=vett[i];
+						vett[i]=temp;
+					};
+				};
+			};
+		};
 	}
 #endif
