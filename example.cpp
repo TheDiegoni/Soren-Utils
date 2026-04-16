@@ -27,7 +27,7 @@ int main(){
 	};
 	cout<<endl;
 	Time t=getTime(2);
-	Date d=getDate(2);
-	cout<<t.hour<<':'<<t.minute<<':'<<t.second<<' '<<d.day<<'/'<<d.month<<'/'<<d.year<<endl;
+//	Date d=getDate(2);
+	cout<<t.hour<<':'<<t.minute<<':'<<t.second<</*' '<<d.day<<'/'<<d.month<<'/'<<d.year<<*/endl;
 	return 0;
 }
