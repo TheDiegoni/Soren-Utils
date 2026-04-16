@@ -34,7 +34,7 @@ using namespace std;
 		t.second=(sec-(sec/3600)*3600-t.minute*60);
 		return t;
 	}
-	Date getDate(int bonus=0) {
+/*	Date getDate(int bonus=0) {
 		Date d; time_t sec=time(NULL)+(bonus*3600);
 		cout<<(sec/86400)%366<<endl;
 		d.year=1970;
@@ -49,7 +49,7 @@ using namespace std;
 		};
 		d.day+=sec/(86400*365);
 		return d;
-	}
+	}*/
 
 	string lower(string Str){
         	// Ciclo Lowercase
