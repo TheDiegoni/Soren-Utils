@@ -26,8 +26,8 @@ int main(){
 		cout<<F[i]<<endl;
 	};
 	cout<<endl;
-	Time t=getTime(2);
-	Date d=getDate(2);
+	Time t;	Date d;
+	t.getTime(2); d.getDate(2);
 	cout<<t.hour<<':'<<t.minute<<':'<<t.second<<' '<<d.day<<'/'<<d.month<<'/'<<d.year<<endl;
 	return 0;
 }

@@ -16,95 +16,95 @@ using namespace std;
 	#define SORENUTILS_H
 
 
-	struct Time{
-		int hour;
-		int minute;
-		int second;
-	};
-	struct Date{
-		int day;
-		int month;
-		int year;
+	class Time{
+		public:
+			int hour;
+			int minute;
+			int second;
+			void getTime(int bonus=0){
+				time_t sec=time(NULL)+(bonus*3600);
+				hour=(sec/3600)%24;
+				minute=(sec-(sec/3600)*3600)/60;
+				second=(sec-(sec/3600)*3600-minute*60);
+			}
 	};
 
-	Time getTime(int bonus=0){
-		Time t; time_t sec=time(NULL)+(bonus*3600);
-		t.hour=(sec/3600)%24;
-		t.minute=(sec-(sec/3600)*3600)/60;
-		t.second=(sec-(sec/3600)*3600-t.minute*60);
-		return t;
-	}
-	Date getDate(int bonus=0){
-		Date d; time_t sec=time(NULL)+(bonus*3600);
-		d.day=1; d.month=1; d.year=1970;
-		for(int i=0; i+86400<sec; i+=86400){
-			d.day+=1;
-			if(d.year%4==0){
-				switch(d.day){
-					case 30:
-						if(d.month==2){
-							d.month+=1;
-							d.day=1;
+	class Date{
+		public:
+			int day;
+			int month;
+			int year;
+			void getDate(int bonus=0){
+				time_t sec=time(NULL)+(bonus*3600);
+				day=1; month=1; year=1970;
+				for(int i=0; i+86400<sec; i+=86400){
+					day+=1;
+					if(year%4==0){
+						switch(day){
+							case 30:
+								if(month==2){
+									month+=1;
+									day=1;
+								};
+								break;
+							case 31:
+								if(month==4 || month==6 || month==9 || month==11){
+									month+=1;
+									day=1;
+								};
+								break;
+							case 32:
+								month+=1;
+								day=1;
+								if(month==13){
+									year+=1;
+									month=1;
+								};
+								break;
 						};
-						break;
-					case 31:
-						if(d.month==4 || d.month==6 || d.month==9 || d.month==11){
-							d.month+=1;
-							d.day=1;
+			    	}else{
+					    day+=1;
+					    switch(day){
+						    case 29:
+						    	if(month==2){
+								    month+=1;
+								    day=1;
+								};
+	    						break;
+			    			case 31:
+				    			if(month==4 || month==6 || month==9 || month==11){
+				    				month+=1;
+					    			day=1;
+							    };
+							    break;
+							case 32:
+    							month+=1;
+		    					day=1;
+			    				if(month==13){
+				    				year+=1;
+					    			month=1;
+							    };
+							    break;
 						};
-						break;
-					case 32:
-						d.month+=1;
-						d.day=1;
-						if(d.month==13){
-							d.year+=1;
-							d.month=1;
-						};
-						break;
+	    			 };
 				};
-		    }else{
-			    d.day+=1;
-			    switch(d.day){
-				    case 29:
-					    if(d.month==2){
-						    d.month+=1;
-						    d.day=1;
-						};
-    					break;
-	    			case 31:
-		    			if(d.month==4 || d.month==6 || d.month==9 || d.month==11){
-			    			d.month+=1;
-				    		d.day=1;
-					    };
-					    break;
-					case 32:
-    					d.month+=1;
-	    				d.day=1;
-		    			if(d.month==13){
-			    			d.year+=1;
-				    		d.month=1;
-					    };
-					    break;
-				};
-    		 };
-		};
-		return d;
-	}
+			}
+	};
 
 	string lower(string Str){
-        	// Ciclo Lowercase
-	        for(int i=0; i<Str.length(); i++){
-        	        if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
-	        };
-        	return Str; // Restituisci la Stringa Risultante
+        // Ciclo Lowercase
+		for(int i=0; i<Str.length(); i++){
+            if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
+	    };
+        return Str; // Restituisci la Stringa Risultante
 	}
 
 	void cls(){
-	        #ifdef _WIN32 // Windows (sia 32 che 64 bit)
-                	system("cls");
-        	#else // Linux o macOS
-                	system("clear");
-        	#endif
+	    #ifdef _WIN32 // Windows (sia 32 che 64 bit)
+           	system("cls");
+        #else // Linux o macOS
+           	system("clear");
+        #endif
 	}
 
 	int termSize(bool cr){ // 0=Columns 1=Rows
