@@ -9,6 +9,8 @@
 #endif
 
 #include <time.h>
+#include <iomanip>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -120,7 +122,15 @@ using namespace std;
 			else{return w.ws_row;};
 		#endif
 	}
-
+	
+/*	void alignOut(string Out; short int a=0){ // 0=Right, 1=Center, 2=Left
+	    int maxlen=termSize(0), strleng=Out.size/sizeof(Out[0]);
+	    switch(a){
+	        case 0:
+                cout<<string;
+	    };
+	}
+*/
 	void order(auto vett[], int q, bool ord=true){ // 0=Decrescente 1=Crescente
 		for(int i=0; i<q-1; i++){
 			for(int j=i+1; j<q; j++){
