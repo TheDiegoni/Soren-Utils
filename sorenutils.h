@@ -26,14 +26,15 @@ using namespace std;
 		int month;
 		int year;
 	};
-	Time getTime(int bonus=0) {
+
+	Time getTime(int bonus=0){
 		Time t; time_t sec=time(NULL)+(bonus*3600);
 		t.hour=(sec/3600)%24;
 		t.minute=(sec-(sec/3600)*3600)/60;
 		t.second=(sec-(sec/3600)*3600-t.minute*60);
 		return t;
 	}
-	Date getDate(int bonus=0) {
+	Date getDate(int bonus=0){
 		Date d; time_t sec=time(NULL)+(bonus*3600);
 		d.day=1; d.month=1; d.year=1970;
 		for(int i=0; i+86400<sec; i+=86400){
@@ -61,32 +62,31 @@ using namespace std;
 						};
 						break;
 				};
-			}else{
-				d.day+=1;
-				if(d.year%4==0){
-					switch(d.day){
-						case 30:
-							if(d.month==2){
-								d.month+=1;
-								d.day=1;
-							};
-							break;
-						case 31:
-							if(d.month==4 || d.month==6 || d.month==9 || d.month==11){
-								d.month+=1;
-								d.day=1;
-							};
-							break;
-						case 32:
-							d.month+=1;
-							d.day=1;
-							if(d.month==13){
-								d.year+=1;
-								d.month=1;
-							};
-							break;
-					};
-			 };
+		    }else{
+			    d.day+=1;
+			    switch(d.day){
+				    case 29:
+					    if(d.month==2){
+						    d.month+=1;
+						    d.day=1;
+						};
+    					break;
+	    			case 31:
+		    			if(d.month==4 || d.month==6 || d.month==9 || d.month==11){
+			    			d.month+=1;
+				    		d.day=1;
+					    };
+					    break;
+					case 32:
+    					d.month+=1;
+	    				d.day=1;
+		    			if(d.month==13){
+			    			d.year+=1;
+				    		d.month=1;
+					    };
+					    break;
+				};
+    		 };
 		};
 		return d;
 	}
