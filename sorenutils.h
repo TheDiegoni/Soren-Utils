@@ -9,7 +9,6 @@
 #endif
 
 #include <time.h>
-#include <iostream>
 #include <string>
 using namespace std;
 
@@ -34,22 +33,63 @@ using namespace std;
 		t.second=(sec-(sec/3600)*3600-t.minute*60);
 		return t;
 	}
-/*	Date getDate(int bonus=0) {
+	Date getDate(int bonus=0) {
 		Date d; time_t sec=time(NULL)+(bonus*3600);
-		cout<<(sec/86400)%366<<endl;
-		d.year=1970;
-		d.day=0;
-		int i=0;
-		while(d.year*86400*365+(d.day+sec/(86400*365))*86400<=sec){
-			cout<<d.year*86400*365+(d.day+sec/(86400*365))*86400<<endl;
+		d.day=1; d.month=1; d.year=1970;
+		for(int i=0; i+86400<sec; i+=86400){
+			d.day+=1;
 			if(d.year%4==0){
-				d.day--;
-			};
-			d.year++;
+				switch(d.day){
+					case 30:
+						if(d.month==2){
+							d.month+=1;
+							d.day=1;
+						};
+						break;
+					case 31:
+						if(d.month==4 || d.month==6 || d.month==9 || d.month==11){
+							d.month+=1;
+							d.day=1;
+						};
+						break;
+					case 32:
+						d.month+=1;
+						d.day=1;
+						if(d.month==13){
+							d.year+=1;
+							d.month=1;
+						};
+						break;
+				};
+			}else{
+				d.day+=1;
+				if(d.year%4==0){
+					switch(d.day){
+						case 30:
+							if(d.month==2){
+								d.month+=1;
+								d.day=1;
+							};
+							break;
+						case 31:
+							if(d.month==4 || d.month==6 || d.month==9 || d.month==11){
+								d.month+=1;
+								d.day=1;
+							};
+							break;
+						case 32:
+							d.month+=1;
+							d.day=1;
+							if(d.month==13){
+								d.year+=1;
+								d.month=1;
+							};
+							break;
+					};
+			 };
 		};
-		d.day+=sec/(86400*365);
 		return d;
-	}*/
+	}
 
 	string lower(string Str){
         	// Ciclo Lowercase
