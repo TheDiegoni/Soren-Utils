@@ -1,6 +1,6 @@
 # Soren-Utils
 
-class Time:
+### class Time:
   - int hour
   - int minute
   - int second
