@@ -7,10 +7,10 @@ class Time:
   void getTime(int bonus=0)
 
 class Date:
-  int day
-  int month
-  int year
-  void getDate(int bonus=0)
+  - int day
+  - int month
+  - int year
+  - void getDate(int bonus=0)
 
 string lower(string Str):
   return Str
