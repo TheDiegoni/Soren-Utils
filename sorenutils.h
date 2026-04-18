@@ -43,21 +43,21 @@ using namespace std;
 					day+=1;
 					if(year%4==0){
 						switch(day){
-							case 30:
+							case 29:
 								if(month==2){
 									month+=1;
-									day=1;
+									day=0;
+								};
+								break;
+							case 30:
+								if(month==4 || month==6 || month==9 || month==11){
+									month+=1;
+									day=0;
 								};
 								break;
 							case 31:
-								if(month==4 || month==6 || month==9 || month==11){
-									month+=1;
-									day=1;
-								};
-								break;
-							case 32:
 								month+=1;
-								day=1;
+								day=0;
 								if(month==13){
 									year+=1;
 									month=1;
@@ -65,23 +65,22 @@ using namespace std;
 								break;
 						};
 			    	}else{
-					    day+=1;
 					    switch(day){
-						    case 29:
+						    case 28:
 						    	if(month==2){
 								    month+=1;
-								    day=1;
+								    day=0;
 								};
 	    						break;
-			    			case 31:
+			    			case 30:
 				    			if(month==4 || month==6 || month==9 || month==11){
 				    				month+=1;
-					    			day=1;
+					    			day=0;
 							    };
 							    break;
-							case 32:
+							case 31:
     							month+=1;
-		    					day=1;
+		    					day=0;
 			    				if(month==13){
 				    				year+=1;
 					    			month=1;
@@ -96,17 +95,17 @@ using namespace std;
 	string lower(string Str){
         // Ciclo Lowercase
 		for(int i=0; i<Str.length(); i++){
-            if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
-	    };
-        return Str; // Restituisci la Stringa Risultante
+         if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
+	   };
+      return Str; // Restituisci la Stringa Risultante
 	}
 
 	void cls(){
-	    #ifdef _WIN32 // Windows (sia 32 che 64 bit)
-           	system("cls");
-        #else // Linux o macOS
-           	system("clear");
-        #endif
+	   #ifdef _WIN32 // Windows (sia 32 che 64 bit)
+        	system("cls");
+      #else // Linux o macOS
+        	system("clear");
+      #endif
 	}
 
 	int termSize(bool cr){ // 0=Columns 1=Rows
@@ -123,14 +122,31 @@ using namespace std;
 		#endif
 	}
 	
-/*	void alignOut(string Out; short int a=0){ // 0=Right, 1=Center, 2=Left
-	    int maxlen=termSize(0), strleng=Out.size/sizeof(Out[0]);
-	    switch(a){
-	        case 0:
-                cout<<string;
-	    };
+	void alignOut(string Out, int a=0, int offset=0){ // 0=Right, 1=Center, 2=Left
+	   int maxlen=termSize(0), strleng=Out.size()/sizeof(Out[0]);
+		int remleng=strleng-maxlen*(strleng/maxlen);
+	   switch(a){
+	      case 0:
+				for(int i=0; i<strleng/maxlen; i++){
+              	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
+				};
+         	cout<<setw(remleng+offset)<<Out.substr((strleng-remleng), remleng)<<endl;
+				break;
+	      case 1:
+				for(int i=0; i<strleng/maxlen; i++){
+              	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
+				};
+         	cout<<setw((maxlen+remleng)/2+offset)<<Out.substr((strleng-remleng), remleng)<<endl;
+				break;
+	      case 2:
+				for(int i=0; i<strleng/maxlen; i++){
+              	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
+				};
+         	cout<<setw(maxlen+offset)<<Out.substr((strleng-remleng), remleng)<<endl;
+				break;
+	   };
 	}
-*/
+
 	void order(auto vett[], int q, bool ord=true){ // 0=Decrescente 1=Crescente
 		for(int i=0; i<q-1; i++){
 			for(int j=i+1; j<q; j++){
