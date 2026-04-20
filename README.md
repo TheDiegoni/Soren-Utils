@@ -1,6 +1,6 @@
 # Soren-Utils
 
-## struct Color
+## struct Color:
   - string t_bk
   - string t_rd
   - string t_gn
