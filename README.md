@@ -72,7 +72,7 @@
     - print "Out" aligned to the Left (moved by "offset" number of characters)
 
 
-## void order(any array[], int q, bool ord=true):
+## void order(any array[], int q, any field, bool ord=true):
   - if ord=true:
     - order "array" in increasing order
   - else:
