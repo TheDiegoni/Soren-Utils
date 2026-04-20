@@ -182,23 +182,26 @@ using namespace std;
 	   };
 	}
 
-	void order(auto vett[], int q, bool ord=true){ // 0=Decrescente 1=Crescente
+	void order(auto arr[], int q, auto &field, bool ord=true){ // 0=Decrescente 1=Crescente
+		auto f=static_cast<bool*>(static_cast<void*>(&field))-static_cast<bool*>(static_cast<void*>(&arr[0]));
 		for(int i=0; i<q-1; i++){
+			auto ip=static_cast<decltype(&field)>(static_cast<void*>(static_cast<bool*>(static_cast<void*>(&arr[i]))+f));
 			for(int j=i+1; j<q; j++){
+				auto jp=static_cast<decltype(&field)>(static_cast<void*>(static_cast<bool*>(static_cast<void*>(&arr[j]))+f));
 				// Scelta Ordine
 				if(ord){ // Ordinamento Crescente
 					// Scambio Posizione
-					if(vett[j]<vett[i]){
-						auto temp=vett[j];
-						vett[j]=vett[i];
-						vett[i]=temp;
+					if(*jp<*ip){
+						auto temp=arr[j];
+						arr[j]=arr[i];
+						arr[i]=temp;
 					};
 				}else{ // Ordinamento Decrescente
 					// Scambio Posizione
-					if(vett[j]>vett[i]){
-						auto temp=vett[j];
-						vett[j]=vett[i];
-						vett[i]=temp;
+					if(*jp>*ip){
+						auto temp=arr[j];
+						arr[j]=arr[i];
+						arr[i]=temp;
 					};
 				};
 			};
