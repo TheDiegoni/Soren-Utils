@@ -1,5 +1,7 @@
 # Soren-Utils
 
+## struct Color
+
 ## class Time:
   - int hour
   - int minute
