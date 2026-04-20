@@ -33,7 +33,7 @@ int main(){
 		cout<<F[i]<<endl;
 	};
 	cout<<endl;
-	order(T, 6, T[0].punt, false);
+	order(T, 6, T[0].punt, true);
 	for(int i=0; i<6; i++) {
 		cout<<T[i].name<<": "<<T[i].punt<<endl;
 	};
