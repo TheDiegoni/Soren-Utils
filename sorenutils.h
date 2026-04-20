@@ -17,6 +17,41 @@ using namespace std;
 #ifndef SORENUTILS_H
 	#define SORENUTILS_H
 
+	struct Color{
+		string t_bk="\033[30m";
+		string t_rd="\033[31m";
+		string t_gn="\033[32m";
+		string t_yw="\033[33m";
+		string t_be="\033[34m";
+		string t_ma="\033[35m";
+		string t_cn="\033[36m";
+		string t_we="\033[37m";
+		string tb_bk="\033[90m";
+		string tb_rd="\033[91m";
+		string tb_gn="\033[92m";
+		string tb_yw="\033[93m";
+		string tb_be="\033[94m";
+		string tb_ma="\033[95m";
+		string tb_cn="\033[96m";
+		string tb_we="\033[97m";
+		string b_bk="\033[40m";
+		string b_rd="\033[41m";
+		string b_gn="\033[42m";
+		string b_yw="\033[43m";
+		string b_be="\033[44m";
+		string b_ma="\033[45m";
+		string b_cn="\033[46m";
+		string b_we="\033[47m";
+		string bb_bk="\033[100m";
+		string bb_rd="\033[101m";
+		string bb_gn="\033[102m";
+		string bb_yw="\033[103m";
+		string bb_be="\033[104m";
+		string bb_ma="\033[105m";
+		string bb_cn="\033[106m";
+		string bb_we="\033[107m";
+		string cl="\033[0m";
+	};
 
 	class Time{
 		public:
@@ -96,8 +131,8 @@ using namespace std;
         // Ciclo Lowercase
 		for(int i=0; i<Str.length(); i++){
          if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
-	   };
-      return Str; // Restituisci la Stringa Risultante
+		};
+    	return Str; // Restituisci la Stringa Risultante
 	}
 
 	void cls(){
@@ -122,10 +157,10 @@ using namespace std;
 		#endif
 	}
 	
-	void alignOut(string Out, int a=0, int offset=0){ // 0=Right, 1=Center, 2=Left
-	   int maxlen=termSize(0), strleng=Out.size()/sizeof(Out[0]);
+	void alignOut(string Out, int a=0, int offset=0){ // 0=Left, 1=Center, 2=Right
+	    int maxlen=termSize(0), strleng=Out.size()/sizeof(Out[0]);
 		int remleng=strleng-maxlen*(strleng/maxlen);
-	   switch(a){
+	    switch(a){
 	      case 0:
 				for(int i=0; i<strleng/maxlen; i++){
               	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;

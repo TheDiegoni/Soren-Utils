@@ -6,6 +6,7 @@ using namespace std;
 int main(){
 	int I[6]={2, 4, 3, 1, 5, 6};
 	float F[6]={4.3, 4.7, 1.5, 5.9, 6.7, 2.5};
+	Color color;
 	cls();
 	cout<<lower("BuOnGiorNO!")<<endl;
 	cout<<"Colonne: "<<termSize(0)<<endl;
@@ -32,6 +33,7 @@ int main(){
 	alignOut("Ciao, questo e un testo di prova per l'allineamento a destra...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 0, 10);
 	alignOut("Ciao, questo e un testo di prova per l'allineamento a centro...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 1);
 	alignOut("Ciao, questo e un testo di prova per l'allineamento a sinistra.dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 2, -20);
+	cout<<color.t_bk<<color.b_gn<<"Ciao "<<color.tb_rd<<color.bb_yw<<"Mondo!"<<color.cl<<" Close";
 	cin.get();
 	return 0;
 }
