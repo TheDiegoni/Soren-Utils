@@ -165,19 +165,19 @@ using namespace std;
 				for(int i=0; i<strleng/maxlen; i++){
               	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
 				};
-         	cout<<setw(remleng+offset)<<Out.substr((strleng-remleng), remleng)<<endl;
+         	cout<<setw(remleng+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	      case 1:
 				for(int i=0; i<strleng/maxlen; i++){
               	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
 				};
-         	cout<<setw((maxlen+remleng)/2+offset)<<Out.substr((strleng-remleng), remleng)<<endl;
+         	cout<<setw((maxlen+remleng)/2+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	      case 2:
 				for(int i=0; i<strleng/maxlen; i++){
               	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
 				};
-         	cout<<setw(maxlen+offset)<<Out.substr((strleng-remleng), remleng)<<endl;
+         	cout<<setw(maxlen+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	   };
 	}
