@@ -122,7 +122,7 @@ using namespace std;
 		#endif
 	}
 	
-	void alignOut(string Out, int a=0, int offset=0){ // 0=Right, 1=Center, 2=Left
+	void alignOut(int a=0, int offset=0, string Out){ // 0=Right, 1=Center, 2=Left
 	   int maxlen=termSize(0), strleng=Out.size()/sizeof(Out[0]);
 		int remleng=strleng-maxlen*(strleng/maxlen);
 	   switch(a){
