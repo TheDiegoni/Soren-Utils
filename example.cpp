@@ -3,9 +3,15 @@
 #include <string>
 using namespace std;
 
+struct Test{
+    string name;
+    int punt;
+};
+
 int main(){
 	int I[6]={2, 4, 3, 1, 5, 6};
 	float F[6]={4.3, 4.7, 1.5, 5.9, 6.7, 2.5};
+	Test T[6]={{"Ciao", 5}, {"Mondo", 3}, {"Prova", 4}, {"Test", 2}, {"Soren", 1}, {"Utils", 6}};
 	Color color;
 	cls();
 	cout<<lower("BuOnGiorNO!")<<endl;
@@ -17,22 +23,27 @@ int main(){
 		};
 		cout<<endl;
 	};
-	order(I, 6, 0);
+	order(I, 6, I[0], false);
 	for(int i=0; i<6; i++) {
 		cout<<I[i]<<endl;
 	};
 	cout<<endl;
-	order(F, 6);
+	order(F, 6, F[0]);
 	for(int i=0; i<6; i++) {
 		cout<<F[i]<<endl;
+	};
+	cout<<endl;
+	order(T, 6, T[0].punt, false);
+	for(int i=0; i<6; i++) {
+		cout<<T[i].name<<": "<<T[i].punt<<endl;
 	};
 	cout<<endl;
 	Time t;	Date d;
 	t.getTime(2); d.getDate(2);
 	cout<<t.hour<<':'<<t.minute<<':'<<t.second<<' '<<d.day<<'/'<<d.month<<'/'<<d.year<<endl;
-	alignOut("Ciao, questo e un testo di prova per l'allineamento a destra...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 0, 10);
-	alignOut("Ciao, questo e un testo di prova per l'allineamento a centro...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 1);
-	alignOut("Ciao, questo e un testo di prova per l'allineamento a sinistra.dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 2, -20);
+	alignOut("Ciao, questo e un testo di prova per l'allineamento a destra...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 0, 10); cout<<endl;
+	alignOut("Ciao, questo e un testo di prova per l'allineamento a centro...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 1); cout<<endl;
+	alignOut("Ciao, questo e un testo di prova per l'allineamento a sinistra.dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 2, -20); cout<<endl;
 	cout<<color.t_bk<<color.b_gn<<"Ciao "<<color.tb_rd<<color.bb_yw<<"Mondo!"<<color.cl<<" Close";
 	cin.get();
 	return 0;
