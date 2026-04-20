@@ -1,6 +1,39 @@
 # Soren-Utils
 
 ## struct Color
+  - string t_bk
+  - string t_rd
+  - string t_gn
+  - string t_yw
+  - string t_be
+  - string t_ma
+  - string t_cn
+  - string t_we
+  - string tb_bk
+  - string tb_rd
+  - string tb_gn
+  - string tb_yw
+  - string tb_be
+  - string tb_ma
+  - string tb_cn
+  - string tb_we
+  - string b_bk
+  - string b_rd
+  - string b_gn
+  - string b_yw
+  - string b_be
+  - string b_ma
+  - string b_cn
+  - string b_we
+  - string bb_bk
+  - string bb_rd
+  - string bb_gn
+  - string bb_yw
+  - string bb_be
+  - string bb_ma
+  - string bb_cn
+  - string bb_we
+  - string cl
 
 ## class Time:
   - int hour
