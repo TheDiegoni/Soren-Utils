@@ -152,15 +152,22 @@ using namespace std;
       if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
       return columns;
     }else{
-      int rows=rcsbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+      int rows=csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
       if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
       return rows;
      };
 		#else
 			struct winsize w;
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-			if(cr==0){return w.ws_col;}
-			else{return w.ws_row;};
+			if(cr==0){
+      int columns=w.ws_col;
+      if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
+      return columns;
+    }else{
+      int rows=w.ws_row;
+      if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
+      return rows;
+     };
 		#endif
 	}
 	
