@@ -147,8 +147,15 @@ using namespace std;
 		#ifdef _WIN32
 			CONSOLE_SCREEN_BUFFER_INFO csbi;
 			GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-			if(cr==0){return csbi.srWindow.Right - csbi.srWindow.Left + 1;}
-			else{return csbi.srWindow.Bottom - csbi.srWindow.Top + 1;};
+			if(cr==0){
+      int columns=csbi.srWindow.Right - csbi.srWindow.Left + 1;
+      if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
+      return columns;
+    }else{
+      int rows=rcsbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+      if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
+      return rows;
+     };
 		#else
 			struct winsize w;
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
