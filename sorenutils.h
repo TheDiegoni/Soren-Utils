@@ -130,17 +130,17 @@ using namespace std;
 	string lower(string Str){
         // Ciclo Lowercase
 		for(int i=0; i<Str.length(); i++){
-         if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
+        	if(Str[i]>=65&&Str[i]<=90){Str[i]+=32;}; // Controllo Uppercase e Conversione in Lowercase
 		};
     	return Str; // Restituisci la Stringa Risultante
 	}
 
 	void cls(){
-	   #ifdef _WIN32 // Windows (sia 32 che 64 bit)
+		#ifdef _WIN32 // Windows (sia 32 che 64 bit)
         	system("cls");
-      #else // Linux o macOS
+    	#else // Linux o macOS
         	system("clear");
-      #endif
+      	#endif
 	}
 
 	int termSize(bool cr){ // 0=Columns 1=Rows
@@ -148,26 +148,26 @@ using namespace std;
 			CONSOLE_SCREEN_BUFFER_INFO csbi;
 			GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
 			if(cr==0){
-      int columns=csbi.srWindow.Right - csbi.srWindow.Left + 1;
-      if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
-      return columns;
-    }else{
-      int rows=csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-      if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
-      return rows;
-     };
+      			int columns=csbi.srWindow.Right - csbi.srWindow.Left + 1;
+      			if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
+				return columns;
+    		}else{
+    			int rows=csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+    			if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
+    			return rows;
+    		};
 		#else
 			struct winsize w;
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 			if(cr==0){
-      int columns=w.ws_col;
-      if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
-      return columns;
-    }else{
-      int rows=w.ws_row;
-      if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
-      return rows;
-     };
+    			int columns=w.ws_col;
+    			if(columns==0){cout<<"Columns not Found; Insert Manually: "; cin>>columns;};
+    			return columns;
+    		}else{
+    			int rows=w.ws_row;
+    			if(rows==0){cout<<"Rows not Found; Insert Manually: "; cin>>rows;};
+    			return rows;
+    		};
 		#endif
 	}
 	
@@ -175,23 +175,23 @@ using namespace std;
 	    int maxlen=termSize(0), strleng=Out.size()/sizeof(Out[0]);
 		int remleng=strleng-maxlen*(strleng/maxlen);
 	    switch(a){
-	      case 0:
+	    	case 0:
 				for(int i=0; i<strleng/maxlen; i++){
-              	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
+              		cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
 				};
-         	cout<<setw(remleng+offset)<<Out.substr((strleng-remleng), remleng);
+         		cout<<setw(remleng+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	      case 1:
 				for(int i=0; i<strleng/maxlen; i++){
-              	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
+            	  	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
 				};
-         	cout<<setw((maxlen+remleng)/2+offset)<<Out.substr((strleng-remleng), remleng);
+         		cout<<setw((maxlen+remleng)/2+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	      case 2:
 				for(int i=0; i<strleng/maxlen; i++){
-              	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
+            	  	cout<<setw(maxlen)<<Out.substr((i*maxlen), maxlen+(i*maxlen))<<endl;
 				};
-         	cout<<setw(maxlen+offset)<<Out.substr((strleng-remleng), remleng);
+         		cout<<setw(maxlen+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	   };
 	}
