@@ -55,7 +55,7 @@ void Programma(int p){
     order(P, p, P[0].puntt, false); // Chiamata Ordinamento
 
     // Output
-    tab.add_row({"Nome", "Prova 1", "Prova 2", "Totale"}); // Aggiungi Fila alla Tabella
+    tab.add_row({"Nome", "Prova1", "Prova2", "Totale"}); // Aggiungi Fila alla Tabella
     for(int i=0; i<p; i++){
         tab.add_row({P[i].name, to_string(P[i].punt1), to_string(P[i].punt2), to_string(P[i].puntt)}); // Aggiungi Fila alla Tabella
     };
