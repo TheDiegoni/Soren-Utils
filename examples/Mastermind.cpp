@@ -32,7 +32,7 @@
 using namespace std;
 
 // Dichiarazione Globale
-const int Mv=5, Cc=5; // Numero di Mosse, Numero di Cifre
+const int Mv=5, Cc=6; // Numero di Mosse, Numero di Cifre
 Color color;
 
 // Prototipazione Sottoprogrammi
@@ -106,8 +106,8 @@ void newtry(int &Tries, int In[][Cc], bool Found[][Cc*2]){
 			};
 			temp+=col+to_string(In[j][i/2])+color.cl+" "; // Stampa Cifra con Colore Corretto
 		};
-		alignOut("cen", 1); cout<<endl;
-		alignOut(temp, 1, (9*Cc)/2); cout<<endl;
+		if(Cc%2==0){alignOut(temp, 1, (9*Cc/2)); cout<<endl;}
+		 else{alignOut(temp, 1, (9*Cc/2)+1); cout<<endl;};
 	};
 	cout<<endl;
 	Tries+=1; // Nuovo Tentativo
