@@ -171,7 +171,7 @@ using namespace std;
 		#endif
 	}
 	
-	void alignOut(string Out, int a=0, int offset=0){ // 0=Left, 1=Center, 2=Right
+	void alignOut(string Out, short int a=0, int offset=0){ // 0=Left, 1=Center, 2=Right
 	    int maxlen=termSize(0), strleng=Out.size()/sizeof(Out[0]);
 		int remleng=strleng-maxlen*(strleng/maxlen);
 	    switch(a){
@@ -194,6 +194,50 @@ using namespace std;
          		cout<<setw(maxlen+offset)<<Out.substr((strleng-remleng), remleng);
 				break;
 	   };
+	}
+
+	string alignIn(string In, short int a=0, int offset=0){ // 0=Left, 1=Center, 2=Right
+		INPUT_RECORD in[1]; DWORD cNumRead, fdwSave;
+		GetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), &fdwSave);
+
+		string c="", clear=""; bool end=false; int off;
+		for(int i=0; i<termSize(0); i++){clear+=" ";}
+		switch(a){
+			case 0:
+				off=offset;
+				break;
+			case 1:
+				if(offset>0){off=offset*2;}
+				 else{off=-offset*2;};
+				break;
+			case 2:
+				off=-offset;
+				break;
+		};
+
+		SetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), (ENABLE_WINDOW_INPUT | ENABLE_EXTENDED_FLAGS) & ~ENABLE_QUICK_EDIT_MODE);
+		while(!end){
+			cout<<"\r"<<clear<<"\r";
+			alignOut(In+c, a, offset);
+
+			ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE), in, 1, &cNumRead);
+			if(static_cast<int>(in[0].Event.KeyEvent.uChar.AsciiChar)>=32 && static_cast<int>(in[0].Event.KeyEvent.uChar.AsciiChar)<=126){
+				if(in[0].Event.KeyEvent.bKeyDown && (c.size()/sizeof(c[0]))+(In.size()/sizeof(In[0]))+off<termSize(0)-1){c+=in[0].Event.KeyEvent.uChar.AsciiChar;};
+			}else{
+				if(in[0].Event.KeyEvent.bKeyDown){
+					switch(static_cast<int>(in[0].Event.KeyEvent.uChar.AsciiChar)){
+						case 8:
+							if(c.size()>0){c.pop_back();};
+							break;
+						case 13:
+							end=true;
+							break;
+					};
+				};
+			};
+		};
+		SetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), fdwSave);
+		return c;
 	}
 
 	void order(auto arr[], int q, auto &field, bool ord=true){ // 0=Decrescente 1=Crescente
@@ -221,4 +265,9 @@ using namespace std;
 			};
 		};
 	}
+
+	/*void wait(int sec){
+		time_t s=time(NULL);
+		while(time(NULL)<s+sec){};
+	}*/
 #endif
