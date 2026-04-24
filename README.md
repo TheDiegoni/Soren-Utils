@@ -63,7 +63,7 @@
     - return rows
 
 
-## void alignOut(string Out, int a=0, int offset=0):
+## void alignOut(string Out, short int a=0, int offset=0):
   - if a=0:
     - print "Out" aligned to the Right (moved by "offset" number of characters)
   - elif a=1:
@@ -72,7 +72,7 @@
     - print "Out" aligned to the Left (moved by "offset" number of characters)
 
 
-## string alignIn(string In, int a=0, int offset=0):
+## string alignIn(string In, short int a=0, int offset=0):
   - if a=0:
     - print "In"+input aligned to the Right (moved by "offset" number of characters)
   - elif a=1:
@@ -87,3 +87,6 @@
     - order "array" in increasing order
   - else:
     - order "array" in decreasing order
+
+
+## void wait(int sec, bool show)
