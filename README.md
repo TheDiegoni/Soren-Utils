@@ -72,6 +72,16 @@
     - print "Out" aligned to the Left (moved by "offset" number of characters)
 
 
+## string alignIn(string In, int a=0, int offset=0):
+  - if a=0:
+    - print "In"+input aligned to the Right (moved by "offset" number of characters)
+  - elif a=1:
+    - print "In"+input aligned to the Center (moved by "offset" number of characters)
+  - elif a=0:
+    - print "In"+input aligned to the Left (moved by "offset" number of characters)
+  - return input
+
+
 ## void order(any array[], int q, any field, bool ord=true):
   - if ord=true:
     - order "array" in increasing order
