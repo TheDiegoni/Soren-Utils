@@ -90,3 +90,5 @@
 
 
 ## void wait(int sec, bool show)
+  - if show=true:
+    - print countup
