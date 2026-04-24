@@ -72,7 +72,7 @@
     - print "Out" aligned to the Left (moved by "offset" number of characters)
 
 
-## string alignIn(string In, short int a=0, int offset=0):
+## string alignIn(string In, short int a=0, int offset=0): // WINDOWS ONLY!
   - if a=0:
     - print "In"+input aligned to the Right (moved by "offset" number of characters)
   - elif a=1:
