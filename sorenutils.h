@@ -266,8 +266,13 @@ using namespace std;
 		};
 	}
 
-	/*void wait(int sec){
-		time_t s=time(NULL);
-		while(time(NULL)<s+sec){};
-	}*/
+	void wait(int sec, bool show=false){
+		time_t s=time(NULL); int passed=0;
+		while(time(NULL)<s+sec){
+			if(time(NULL)-s!=passed && show){
+				passed=time(NULL)-s;
+				cout<<passed<<endl;
+			};
+		};
+	}
 #endif
