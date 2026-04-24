@@ -45,7 +45,7 @@ int main(){
 	alignOut("Ciao, questo e un testo di prova per l'allineamento a destra...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 0, 10); cout<<endl;
 	alignOut("Ciao, questo e un testo di prova per l'allineamento a centro...dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 1); cout<<endl;
 	alignOut("Ciao, questo e un testo di prova per l'allineamento a sinistra.dafssssssssssssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwarwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfesaaffffffffffffffffww", 2, -20); cout<<endl;
-	wait(3, true);
+	wait(5, true);
 	string c=alignIn("Inserisci Stringa Sinistra: ", 0, 3);
 	cout<<endl; alignOut(c, 0); cout<<endl;
 	c=alignIn("Inserisci Stringa Destra: ", 2, -3);
@@ -56,7 +56,8 @@ int main(){
 	cout<<endl; alignOut(c, 0);
 	c=alignIn("Inserisci Stringa Centro: ", 1);
 	cout<<endl; alignOut(c, 0);
+	wait(3);
 	cout<<color.t_bk<<color.b_gn<<"Ciao "<<color.tb_rd<<color.bb_yw<<"Mondo!"<<color.cl<<" Close";
-	wait(5);
+	cin.get()
 	return 0;
 }
