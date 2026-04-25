@@ -196,7 +196,7 @@ using namespace std;
 	   };
 	}
 
-	string alignIn(string In, short int a=0, int offset=0){ // 0=Left, 1=Center, 2=Right
+	string alignIn(short int a=0, string In="", int offset=0){ // 0=Left, 1=Center, 2=Right
 		#ifdef _WIN32
 			INPUT_RECORD in[1]; DWORD cNumRead, fdwSave;
 			GetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), &fdwSave);
