@@ -197,25 +197,25 @@ using namespace std;
 	}
 
 	string alignIn(short int a=0, string In="", int offset=0){ // 0=Left, 1=Center, 2=Right
+		int off; string clear="", c=""; bool end=false;
+		for(int i=0; i<termSize(0); i++){clear+=" ";}
+		switch(a){
+			case 0:
+				off=offset;
+				break;
+			case 1:
+				if(offset>0){off=offset*2;}
+				 else{off=-offset*2;};
+				break;
+			case 2:
+				off=-offset;
+				break;
+		};
+
 		#ifdef _WIN32
 			INPUT_RECORD in[1]; DWORD cNumRead, fdwSave;
 			GetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), &fdwSave);
-	
-			string c="", clear=""; bool end=false; int off;
-			for(int i=0; i<termSize(0); i++){clear+=" ";}
-			switch(a){
-				case 0:
-					off=offset;
-					break;
-				case 1:
-					if(offset>0){off=offset*2;}
-					 else{off=-offset*2;};
-					break;
-				case 2:
-					off=-offset;
-					break;
-			};
-	
+
 			SetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), (ENABLE_WINDOW_INPUT | ENABLE_EXTENDED_FLAGS) & ~ENABLE_QUICK_EDIT_MODE);
 			while(!end){
 				cout<<"\r"<<clear<<"\r";
