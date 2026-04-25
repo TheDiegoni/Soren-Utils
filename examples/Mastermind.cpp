@@ -32,7 +32,7 @@
 using namespace std;
 
 // Dichiarazione Globale
-const int Mv=5, Cc=6; // Numero di Mosse, Numero di Cifre
+const int Mv=5, Cc=12; // Numero di Mosse, Numero di Cifre(min 1, max 11)
 Color color;
 
 // Prototipazione Sottoprogrammi
@@ -46,17 +46,17 @@ bool correct(bool Found[]); // Sottoprogramma Controllo Corrette
 int main(){
 	// Dichiarazione Globale
 	int tries=0, code[Cc], in[Mv][Cc]; // Contatore Tentativi, Vettore Codice Segreto, Vettore Risposta Inserita
-	bool found[Mv][Cc*2]; // Vettore Strike e Ball
+	bool found[Mv][Cc*2]; // Vettore Controllo Cifre Trovate (Strike e Ball)
 
 	// Inizializzazione Gioco
 	codeg(code); // Chiamata Generazione Codice
 	cls(); // Chiamata Clear Screen
 	alignOut("Benvenuti in Master Mind!", 1); cout<<endl;
 	alignOut("L'Obiettivo e Scoprire un Codice Segreto di "+to_string(Cc)+" Cifre, che possono esser Ripetute, nel Minor Numero di Tentativi possibili.", 1); cout<<endl;
-    alignOut("Ogni Tentativo verra Stampato a Schermo con le Cifre Colorate ad Indicare:", 1); cout<<endl;
+   alignOut("Ogni Tentativo verra Stampato a Schermo con le Cifre Colorate ad Indicare:", 1); cout<<endl;
 	alignOut("- Cifre Presenti al Posto Giusto ("+color.tb_gn+"Verdi"+color.cl+");", 1, 4); cout<<endl;
-    alignOut("- Cifre Presenti al Posto Sbagliato ("+color.tb_rd+"Rosse"+color.cl+");", 1, 4); cout<<endl;
-    alignOut("- Cifre Non Presenti ("+color.tb_bk+"Grigie"+color.cl+").", 1, 4); cout<<endl;
+   alignOut("- Cifre Presenti al Posto Sbagliato ("+color.tb_rd+"Rosse"+color.cl+");", 1, 4); cout<<endl;
+   alignOut("- Cifre Non Presenti ("+color.tb_bk+"Grigie"+color.cl+").", 1, 4); cout<<endl;
 	alignOut("Hai "+to_string(Mv)+" Tentativi.", 1); cout<<endl;
 	alignOut("Buona Fortuna.", 1); cout<<endl;
 
@@ -69,9 +69,9 @@ int main(){
 
 		// Chiamata Controllo Corrette
 		if(correct(found[tries-1])){
-                        alignOut("Hai Indovinato in "+to_string(tries)+" Tentativi!", 1); cout<<endl; // Output Vittoria
-                        cin.get(); return 0; // Fine Programma
-                };
+         alignOut("Hai Indovinato in "+to_string(tries)+" Tentativi!", 1); // Output Vittoria
+         cin.get(); return 0; // Fine Programma
+      };
 	}while(tries<Mv); // Fine Ciclo Risposte
 
 	// Controllo Risposte Esaurite
@@ -79,7 +79,7 @@ int main(){
 		// Output Persa
 		alignOut("Hai perso! La risposta era:", 1); cout<<endl;
 		string temp="";
-		for(int i=0; i<Cc; i++){temp+=to_string(code[i])+" ";}; alignOut(temp, 1);
+		for(int i=0; i<Cc; i++){temp+=to_string(code[i])+" ";}; alignOut(temp, 1, 1);
 		cin.get(); return 0; // Fine Programma
 	};
 }
@@ -90,27 +90,21 @@ void codeg(int Code[]){
 	for(int i=0; i<Cc; i++){Code[i]=((double)rand()/RAND_MAX)*9;}; // Ciclo Generazione Numeri
 }
 
-// Sottoprogramma Nuovo Tentativo
-void newtry(int &Tries, int In[][Cc], bool Found[][Cc*2]){
-	// Ciclo Stampa Tentativi
-	for(int j=0; j<=Tries; j++){
-        string temp="";
-		// Ciclo Stampa Cifre
-		for(int i=0; i<Cc*2; i+=2){
-			string col=color.tb_bk; // Dichiarazione Variabile Colore
-			// Controllo Cifra Ball
-			if(Found[j][i]){
-				// Controllo Cifra Strike
-				if(Found[j][i+1]){col=color.tb_gn;}
-				 else{col=color.tb_rd;};
+// Sottoprogramma Input Risposta
+void input(int In[]){
+	// Input Numeri
+	int count=0;
+	string str="";
+	do{
+		str=alignIn(1, "Inserisci la Tua Risposta ("+to_string(Cc)+" Cifre): ");
+		for(int i=0; i<str.length()/sizeof(str[0]); i++){
+			if(str[i]>=48 && str[i]<=57){
+				In[count]=str[i]-48;
+				count+=1;
 			};
-			temp+=col+to_string(In[j][i/2])+color.cl+" "; // Stampa Cifra con Colore Corretto
+			if(count>=Cc){break;};
 		};
-		if(Cc%2==0){alignOut(temp, 1, (9*Cc/2)); cout<<endl;}
-		 else{alignOut(temp, 1, (9*Cc/2)+1); cout<<endl;};
-	};
-	cout<<endl;
-	Tries+=1; // Nuovo Tentativo
+	}while(count<Cc);
 }
 
 // Sottoprogramma Controllo Risposta
@@ -148,20 +142,33 @@ void compare(int In[], int Code[], bool Found[]){
 	cout<<endl;
 }
 
+// Sottoprogramma Nuovo Tentativo
+void newtry(int &Tries, int In[][Cc], bool Found[][Cc*2]){
+	// Ciclo Stampa Tentativi
+	for(int j=0; j<=Tries; j++){
+      string temp="";
+		// Ciclo Stampa Cifre
+		for(int i=0; i<Cc*2; i+=2){
+			string col=color.tb_bk; // Dichiarazione Variabile Colore
+			// Controllo Cifra Ball
+			if(Found[j][i]){
+				// Controllo Cifra Strike
+				if(Found[j][i+1]){col=color.tb_gn;}
+				 else{col=color.tb_rd;};
+			};
+			temp+=col+to_string(In[j][i/2])+color.cl+" "; // Stampa Cifra con Colore Corretto
+		};
+		alignOut(temp, 1, (9*Cc/2)+1); cout<<endl;
+	};
+	cout<<endl;
+	Tries+=1; // Nuovo Tentativo
+}
+
 // Sottoprogramma Controllo Corrette
 bool correct(bool Found[]){
 	// Ciclo Controllo Corrette
 	for(int i=0; i<Cc*2; i+=2){
-		if(!(Found[i]&&Found[i+1])){
-			return false;
-		};
+		if(!(Found[i]&&Found[i+1])){return false;};
 	};
 	return true;
-}
-
-// Sottoprogramma Input Risposta
-void input(int In[]){
-	// Input Numeri
-	cout<<"Inserisci la Tua Risposta ("<<Cc<<" Cifre Separate da Spazi):"<<endl;
-	for(int i=0; i<Cc; i++){cin>>In[i];};
 }
