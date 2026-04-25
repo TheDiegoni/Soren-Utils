@@ -32,7 +32,7 @@
 using namespace std;
 
 // Dichiarazione Globale
-const int Mv=5, Cc=12; // Numero di Mosse, Numero di Cifre(min 1, max 11)
+const int Mv=5, Cc=6; // Numero di Mosse, Numero di Cifre(min 1, max 11)
 Color color;
 
 // Prototipazione Sottoprogrammi
