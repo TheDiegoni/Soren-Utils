@@ -53,6 +53,10 @@
   - return Str
 
 
+## string upper(string Str):
+  - return Str
+
+
 ## void cls()
 
 
