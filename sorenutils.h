@@ -135,6 +135,14 @@ using namespace std;
     	return Str; // Restituisci la Stringa Risultante
 	}
 
+	string upper(string Str){
+        // Ciclo Uppercase
+		for(int i=0; i<Str.length(); i++){
+        	if(Str[i]>=97&&Str[i]<=122){Str[i]-=32;}; // Controllo Lowercase e Conversione in Uppercase
+		};
+    	return Str; // Restituisci la Stringa Risultante
+	}
+
 	void cls(){
 		#ifdef _WIN32 // Windows (sia 32 che 64 bit)
         	system("cls");
@@ -227,6 +235,8 @@ using namespace std;
 				}else{
 					if(in[0].Event.KeyEvent.bKeyDown){
 						switch(static_cast<int>(in[0].Event.KeyEvent.uChar.AsciiChar)){
+							case 3:
+								_exit(0);
 							case 8:
 								if(c.size()>0){c.pop_back();};
 								break;
