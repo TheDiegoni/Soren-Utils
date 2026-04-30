@@ -15,6 +15,7 @@ int main(){
 	Color color;
 	cls();
 	cout<<lower("BuOnGiorNO!")<<endl;
+	cout<<upper("BuOnGiorNO!")<<endl;
 	int columns=termSize(0); int rows=termSize(1);
 	cout<<"Colonne: "<<columns<<endl;
 	cout<<"Righe: "<<rows<<endl;
